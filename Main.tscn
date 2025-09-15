@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://77x4fblq0gas"]
+[gd_scene load_steps=6 format=3 uid="uid://77x4fblq0gas"]
 
 [ext_resource type="Theme" uid="uid://d3qunmsvoqldh" path="res://UITheme.tres" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dr56424ntoo6i" path="res://Main.gd" id="1_uu6xs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu6xs"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.21, 0.09065, 0.0798, 0.862745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxg2q"]
 content_margin_left = 10.0
@@ -9,6 +20,11 @@ content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uu6xs"]
+font_size = 60
+outline_size = 20
+outline_color = Color(0.556863, 0.290196, 0.266667, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,42 +35,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uu6xs")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -227.0
+offset_top = -107.5
+offset_right = 227.0
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uu6xs")
 
-[node name="Title" type="Label" parent="VBox"]
+[node name="VBox" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_rxg2q")
 text = "Mini RTS Game"
+label_settings = SubResource("LabelSettings_uu6xs")
 horizontal_alignment = 1
 
-[node name="StartPanel" type="PanelContainer" parent="VBox"]
+[node name="StartPanel" type="PanelContainer" parent="PanelContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="StartButton" type="Button" parent="VBox/StartPanel"]
+[node name="StartButton" type="Button" parent="PanelContainer/VBox/StartPanel"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("1_glv2v")
 text = "Start Game"
 
-[node name="ExitPanel" type="PanelContainer" parent="VBox"]
+[node name="ExitPanel" type="PanelContainer" parent="PanelContainer/VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ExitButton" type="Button" parent="VBox/ExitPanel"]
+[node name="ExitButton" type="Button" parent="PanelContainer/VBox/ExitPanel"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("1_glv2v")

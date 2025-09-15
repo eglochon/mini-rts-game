@@ -1,8 +1,8 @@
 extends Control
 class_name MainScene
 
-@onready var start_btn: Button = $VBox/StartPanel/StartButton
-@onready var exit_btn: Button = $VBox/ExitPanel/ExitButton
+@onready var start_btn: Button = $PanelContainer/VBox/StartPanel/StartButton
+@onready var exit_btn: Button = $PanelContainer/VBox/ExitPanel/ExitButton
 
 var stage_scene: PackedScene = preload("res://MainLevel/Stage.tscn")
 
