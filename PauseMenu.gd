@@ -5,7 +5,7 @@ var game_paused: bool = false
 @onready var resume_btn: Button = $VBoxContainer/ResumeButton
 @onready var exit_btn: Button = $VBoxContainer/ExitButton
 
-# var main_scene: PackedScene = preload("res://Main.tscn")
+var main_scene: PackedScene = load("res://Main.tscn") as PackedScene
 
 func _ready() -> void:
 	resume_btn.pressed.connect(_on_resume)
@@ -29,4 +29,4 @@ func _on_resume() -> void:
 
 func _on_exit() -> void:
 	_on_resume()
-	get_tree().change_scene_to_file("res://Main.tscn")
+	get_tree().change_scene_to_packed(main_scene)

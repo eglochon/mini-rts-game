@@ -38,9 +38,6 @@ func _ready() -> void:
 	box_selection = BoxSelection.new()
 	add_child(box_selection)
 	box_selection.select.connect(_on_select_area)
-	
-	# Restart Button
-	hud.restart_button.pressed.connect(_on_restart)
 
 	# Wait for navigation areas to load and the spawn units
 	NavigationServer2D.map_changed.connect(_on_nav_ready)
@@ -66,8 +63,12 @@ func _on_nav_ready(_map: RID) -> void:
 	call_deferred("_spawn_units")
 
 func _spawn_units() -> void:
+	var tree = get_tree()
+	if not tree:
+		return
+
 	# Get regions
-	var regions = get_tree().get_nodes_in_group("nav_regions")
+	var regions = tree.get_nodes_in_group("nav_regions")
 	var player_regions = []
 	var enemy_regions = []
 	for region in regions:
@@ -191,7 +192,7 @@ func _handle_camera_movement(delta: float) -> void:
 	var mouse_pos = viewport.get_mouse_position()
 
 	var edge_vector = Vector2.ZERO
-	if not box_selection.is_dragging:
+	if not box_selection.is_dragging and not OS.has_feature("web"):
 		if mouse_pos.x >= 0 and mouse_pos.x <= viewport_size.x and mouse_pos.y >= 0 and mouse_pos.y <= viewport_size.y:
 			# Horizontal edges
 			if mouse_pos.x <= edge_size:
@@ -321,8 +322,3 @@ func _get_unit_under_mouse() -> Unit:
 			if collider is Unit:
 				return collider
 	return null
-
-func _on_restart() -> void:
-	var tree = get_tree()
-	tree.paused = false
-	tree.reload_current_scene()

@@ -1,6 +1,8 @@
 extends Control
 class_name HUD
 
+var main_scene: PackedScene = load("res://Main.tscn") as PackedScene
+
 # Player Panel
 @onready var player_unit_panel: PanelContainer = $PlayerUnitPanel
 @onready var player_unit_sprite: TextureRect = $PlayerUnitPanel/VBox/HBox/SpritePanel/Sprite
@@ -21,7 +23,12 @@ class_name HUD
 # Result Panel
 @onready var result_panel: PanelContainer = $ResultPanel
 @onready var result_label: Label = $ResultPanel/VBox/LabelPanel/Label
-@onready var restart_button: Button = $ResultPanel/VBox/ButtonPanel/Button
+@onready var restart_button: Button = $ResultPanel/VBox/RestartPanel/RestartButton
+@onready var exit_button: Button = $ResultPanel/VBox/ExitPanel/ExitButton
+
+func _ready() -> void:
+	restart_button.pressed.connect(_on_restart)
+	exit_button.pressed.connect(_on_exit)
 
 func hide_player_unit() -> void:
 	player_unit_panel.visible = false
@@ -56,3 +63,15 @@ func set_players_counter(total: int) -> void:
 
 func set_enemies_counter(total: int) -> void:
 	enemy_unit_counter_label.text = str(total)
+
+func _on_restart() -> void:
+	var tree = get_tree()
+	tree.paused = false
+	tree.reload_current_scene()
+
+func _on_exit() -> void:
+	get_tree().paused = false
+	call_deferred("_go_to_main_menu")
+
+func _go_to_main_menu() -> void:
+	get_tree().change_scene_to_packed(main_scene)
