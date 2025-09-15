@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://6fqmm1t0ufj3"]
+
+[ext_resource type="Script" uid="uid://dt3ow52m1cny3" path="res://PauseMenu.gd" id="1_etnfi"]
+[ext_resource type="Theme" uid="uid://d3qunmsvoqldh" path="res://UITheme.tres" id="1_nov15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6o5i"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n6o5i"]
+font_size = 60
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="PanelContainer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6o5i")
+script = ExtResource("1_etnfi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Pause" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_n6o5i")
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_nov15")
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_nov15")
+text = "Exit"
