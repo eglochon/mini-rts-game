@@ -1,0 +1,331 @@
+[gd_scene load_steps=24 format=3 uid="uid://cmemsda3177ea"]
+
+[ext_resource type="Script" uid="uid://f1yti8wpgqgq" path="res://MainLevel/HUD.gd" id="1_6otwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p55bh"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owulw"]
+content_margin_left = 15.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03owx"]
+font_size = 25
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cslk8"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03owx"]
+bg_color = Color(0, 0, 0, 0.85098)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dxm6"]
+bg_color = Color(0.308, 0.88, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmx1m"]
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trn2v"]
+bg_color = Color(0, 0, 0, 0.85098)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgr22"]
+bg_color = Color(0.83, 0, 0.179833, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t5cj"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qq8dj"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6otwl"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3dxm6"]
+font_size = 20
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qt3j"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 5.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgr22"]
+font_size = 25
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yvyt"]
+content_margin_left = 0.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwvm7"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okgkj"]
+content_margin_left = 5.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rvpq"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn4l4"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_trn2v"]
+font_size = 60
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuatx"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="HUD" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6otwl")
+
+[node name="PlayerUnitPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_right = 148.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p55bh")
+
+[node name="VBox" type="VBoxContainer" parent="PlayerUnitPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PlayerUnitPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_owulw")
+text = "0"
+label_settings = SubResource("LabelSettings_03owx")
+
+[node name="HBox" type="HBoxContainer" parent="PlayerUnitPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="SpritePanel" type="PanelContainer" parent="PlayerUnitPanel/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_cslk8")
+
+[node name="Sprite" type="TextureRect" parent="PlayerUnitPanel/VBox/HBox/SpritePanel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="HealthPanel" type="PanelContainer" parent="PlayerUnitPanel/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Progress" type="ProgressBar" parent="PlayerUnitPanel/VBox/HBox/HealthPanel"]
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_03owx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3dxm6")
+show_percentage = false
+
+[node name="TargetUnitPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmx1m")
+
+[node name="HBox" type="HBoxContainer" parent="TargetUnitPanel"]
+layout_mode = 2
+
+[node name="HealthPanel" type="PanelContainer" parent="TargetUnitPanel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Progress" type="ProgressBar" parent="TargetUnitPanel/HBox/HealthPanel"]
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_trn2v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lgr22")
+fill_mode = 1
+show_percentage = false
+
+[node name="SpritePanel" type="PanelContainer" parent="TargetUnitPanel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_5t5cj")
+
+[node name="Sprite" type="TextureRect" parent="TargetUnitPanel/HBox/SpritePanel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+flip_h = true
+
+[node name="PlayerCounterPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 73.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qq8dj")
+
+[node name="VBox" type="VBoxContainer" parent="PlayerCounterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PlayerCounterPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6otwl")
+text = "Player"
+label_settings = SubResource("LabelSettings_3dxm6")
+vertical_alignment = 1
+
+[node name="CounterLabel" type="Label" parent="PlayerCounterPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5qt3j")
+text = "0"
+label_settings = SubResource("LabelSettings_lgr22")
+vertical_alignment = 1
+
+[node name="EnemyCounterPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 73.0
+grow_horizontal = 0
+size_flags_horizontal = 10
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8yvyt")
+
+[node name="VBox" type="VBoxContainer" parent="EnemyCounterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="EnemyCounterPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xwvm7")
+text = "Enemies"
+label_settings = SubResource("LabelSettings_3dxm6")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CounterLabel" type="Label" parent="EnemyCounterPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_okgkj")
+text = "0"
+label_settings = SubResource("LabelSettings_lgr22")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ResultPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -68.0
+offset_right = 171.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rvpq")
+
+[node name="VBox" type="VBoxContainer" parent="ResultPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="LabelPanel" type="PanelContainer" parent="ResultPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xn4l4")
+
+[node name="Label" type="Label" parent="ResultPanel/VBox/LabelPanel"]
+layout_mode = 2
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_trn2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPanel" type="PanelContainer" parent="ResultPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vuatx")
+
+[node name="Button" type="Button" parent="ResultPanel/VBox/ButtonPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Restart Game"

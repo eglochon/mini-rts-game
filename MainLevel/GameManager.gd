@@ -13,15 +13,7 @@ var game_finished: bool = false
 
 const TARGET_RANGE = 300.0
 
-@onready var player_unit_sprite: Sprite2D = $HUD/PlayerUnitSprite
-@onready var target_unit_sprite: Sprite2D = $HUD/TargetUnitSprite
-@onready var player_health: ProgressBar = $HUD/PlayerHealth
-@onready var target_health: ProgressBar = $HUD/EnemyHealth
-@onready var selected_counter_label: Label = $HUD/SelectedCounterLabel
-@onready var player_unit_counter_label: Label = $HUD/PlayersCounterLabel
-@onready var enemy_unit_counter_label: Label = $HUD/EnemiesCounterLabel
-@onready var result_label: Label = $HUD/ResultLabel
-@onready var restart_button: Button = $HUD/RestartButton
+@onready var hud: HUD = $CanvasLayer/HUD
 
 @onready var map_selection_sprite: Sprite2D = $MapSelection
 var pointer_tween: Tween
@@ -37,17 +29,8 @@ var camera_velocity: Vector2 = Vector2.ZERO
 
 @export var player_units_path: String = "res://Units/Player"
 @export var enemy_units_path: String = "res://Units/Enemy"
-var player_unit_scenes: Array[PackedScene] = []
-var enemy_unit_scenes: Array[PackedScene] = []
 
 func _ready() -> void:
-	player_unit_scenes = _load_unit_scenes(player_units_path)
-	if player_unit_scenes.is_empty():
-		push_error("No player unit scenes found in %s" % player_units_path)
-	enemy_unit_scenes = _load_unit_scenes(enemy_units_path)
-	if enemy_unit_scenes.is_empty():
-		push_error("No enemy unit scenes found in %s" % enemy_units_path)
-
 	# Selection Logic
 	selected_units = UnitsSelection.new()
 	
@@ -57,7 +40,7 @@ func _ready() -> void:
 	box_selection.select.connect(_on_select_area)
 	
 	# Restart Button
-	restart_button.pressed.connect(_on_restart)
+	hud.restart_button.pressed.connect(_on_restart)
 
 	# Wait for navigation areas to load and the spawn units
 	NavigationServer2D.map_changed.connect(_on_nav_ready)
@@ -80,7 +63,10 @@ func _on_select_area(rect: Rect2) -> void:
 			selected_units.add(unit)
 
 func _on_nav_ready(_map: RID) -> void:
-	# Spawn a lot of units
+	call_deferred("_spawn_units")
+
+func _spawn_units() -> void:
+	# Get regions
 	var regions = get_tree().get_nodes_in_group("nav_regions")
 	var player_regions = []
 	var enemy_regions = []
@@ -91,6 +77,7 @@ func _on_nav_ready(_map: RID) -> void:
 			elif region.is_in_group("player_spawn"):
 				player_regions.append(region)
 
+	# Spawn a lot of units
 	for region in player_regions:
 		for i in range(10):
 			_spawn_player(_get_random_point(region))
@@ -109,24 +96,6 @@ func _on_nav_ready(_map: RID) -> void:
 			player.set_target(nearest_enemy)
 	
 	game_started = true
-
-func _load_unit_scenes(folder_path: String) -> Array[PackedScene]:
-	var scenes: Array[PackedScene] = []
-	var dir = DirAccess.open(folder_path)
-	if not dir:
-		push_error("Cannot open folder: %s" % folder_path)
-		return scenes
-	
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
-			var scene: PackedScene = load("%s/%s" % [folder_path, file_name])
-			if scene:
-				scenes.append(scene)
-		file_name = dir.get_next()
-	dir.list_dir_end()
-	return scenes
 
 func _get_random_point(nav_region: NavigationRegion2D) -> Vector2:
 	var map_rid = nav_region.get_navigation_map()
@@ -147,11 +116,7 @@ func _get_random_point(nav_region: NavigationRegion2D) -> Vector2:
 	return nav_region.global_position  # fallback
 
 func _spawn_player(pos: Vector2) -> void:
-	if player_unit_scenes.is_empty():
-		push_error("No player unit scenes available!")
-		return
-
-	var scene: PackedScene = player_unit_scenes[randi() % player_unit_scenes.size()]
+	var scene: PackedScene = UnitManager.PLAYER_UNITS[randi() % UnitManager.PLAYER_UNITS.size()]
 	var unit: PlayerUnit = scene.instantiate()
 	unit.global_position = pos
 	unit.death.connect(_on_player_death)
@@ -161,11 +126,7 @@ func _spawn_player(pos: Vector2) -> void:
 	player_units.append(unit)
 
 func _spawn_enemy(pos: Vector2) -> void:
-	if enemy_unit_scenes.is_empty():
-		push_error("No enemy unit scenes available!")
-		return
-
-	var scene: PackedScene = enemy_unit_scenes[randi() % enemy_unit_scenes.size()]
+	var scene: PackedScene = UnitManager.ENEMY_UNITS[randi() % UnitManager.ENEMY_UNITS.size()]
 	var unit: EnemyUnit = scene.instantiate()
 	unit.global_position = pos
 	unit.death.connect(_on_enemy_death)
@@ -266,45 +227,28 @@ func _handle_camera_movement(delta: float) -> void:
 
 func _handle_hud_sprites() -> void:
 	if selected_units.is_empty():
-		player_unit_sprite.visible = false
-		player_health.visible = false
-		target_unit_sprite.visible = false
-		target_health.visible = false
+		hud.hide_player_unit()
+		hud.hide_target_unit()
 	else:
 		# Player Unit
 		if not selected_unit:
 			selected_unit = selected_units.pick()
-		player_unit_sprite.texture = selected_unit.sprite_texture
-		player_unit_sprite.visible = true
-		player_health.max_value = selected_unit.max_health
-		player_health.value = selected_unit.health
-		player_health.visible = true
+		hud.set_player_unit(selected_unit)
 
 		# Target Unit
-		if not target_unit_sprite.visible and selected_unit.target and selected_unit.target is EnemyUnit:
-			var target_unit = selected_unit.target
-			target_unit_sprite.texture = target_unit.sprite_texture
-			target_unit_sprite.visible = true
-			target_health.max_value = target_unit.max_health
-			target_health.value = target_unit.health
-			target_health.visible = true
+		if selected_unit.target and selected_unit.target is EnemyUnit:
+			hud.set_target_unit(selected_unit.target)
 		else:
-			target_unit_sprite.visible = false
-			target_health.visible = false
+			hud.hide_target_unit()
 
 	# Selected units counter
-	var total_selected = selected_units.size()
-	if total_selected > 0:
-		selected_counter_label.text = str(total_selected)
-		selected_counter_label.visible = true
-	else:
-		selected_counter_label.visible = false
+	hud.set_selected_counter(selected_units.size())
 
 func _handle_hud_counters() -> void:
 	var total_players = len(player_units)
 	var total_enemies = len(enemy_units)
-	player_unit_counter_label.text = str(total_players)
-	enemy_unit_counter_label.text = str(total_enemies)
+	hud.set_players_counter(total_players)
+	hud.set_enemies_counter(total_enemies)
 
 	if not game_finished:
 		if total_players == 0 and total_enemies == 0:
@@ -318,9 +262,7 @@ func _end_game(message: String) -> void:
 	get_tree().paused = true
 	game_finished = true
 	box_selection.disabled = true
-	result_label.text = message
-	result_label.visible = true
-	restart_button.visible = true
+	hud.set_result(message)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
