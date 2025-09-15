@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccdf8sok6fvad"]
+
+[ext_resource type="PackedScene" uid="uid://bcoyk2o1rxrsl" path="res://Units/PlayerUnit.tscn" id="1_beio3"]
+[ext_resource type="Script" uid="uid://docg5higicyfe" path="res://Units/Player/BlacksmithUnit.gd" id="2_beio3"]
+
+[node name="BlacksmithUnit" instance=ExtResource("1_beio3")]
+script = ExtResource("2_beio3")
+damage = 75
+move_speed = 20.0
+attack_rate = 6.0

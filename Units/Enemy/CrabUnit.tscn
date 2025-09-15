@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpup4cwdky0mv"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_8wwd5"]
+[ext_resource type="Script" uid="uid://i0b0boy5ggva" path="res://Units/Enemy/CrabUnit.gd" id="2_8wwd5"]
+
+[node name="CrabUnit" instance=ExtResource("1_8wwd5")]
+script = ExtResource("2_8wwd5")
+health = 50
+max_health = 50
+damage = 5
+move_speed = 45.0

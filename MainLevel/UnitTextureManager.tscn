@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1uov4myp4oyk"]
+
+[ext_resource type="Script" uid="uid://c7age6bamyqp0" path="res://MainLevel/UnitTextureManager.gd" id="1_okqmf"]
+
+[node name="UnitTextureManager" type="Node"]
+script = ExtResource("1_okqmf")

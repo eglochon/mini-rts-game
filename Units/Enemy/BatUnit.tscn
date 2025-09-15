@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba8mp2wrnu144"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_scopr"]
+[ext_resource type="Script" uid="uid://2gdw0daofrsm" path="res://Units/Enemy/BatUnit.gd" id="2_scopr"]
+
+[node name="BatUnit" instance=ExtResource("1_scopr")]
+script = ExtResource("2_scopr")
+health = 50
+max_health = 50
+damage = 5
+move_speed = 25.0

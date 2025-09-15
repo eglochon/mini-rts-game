@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnfrwdx47uhc1"]
+
+[ext_resource type="PackedScene" uid="uid://bcoyk2o1rxrsl" path="res://Units/PlayerUnit.tscn" id="1_4e8ek"]
+[ext_resource type="Script" uid="uid://d3xn0f7i1ej33" path="res://Units/Player/KnightUnit.gd" id="2_7hv8e"]
+
+[node name="KnightUnit" instance=ExtResource("1_4e8ek")]
+script = ExtResource("2_7hv8e")
+health = 250
+max_health = 250
+damage = 35

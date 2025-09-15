@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://db3pobkv26leg"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_ajbno"]
+[ext_resource type="Script" uid="uid://b38fkafrpaxyx" path="res://Units/Enemy/GhostUnit.gd" id="2_0867d"]
+
+[node name="GhostUnit" instance=ExtResource("1_ajbno")]
+script = ExtResource("2_0867d")
+health = 20
+max_health = 20
+mana = 50
+max_mana = 50
+damage = 10
+move_speed = 20.0
+attack_range = 80.0
+attack_rate = 1.0

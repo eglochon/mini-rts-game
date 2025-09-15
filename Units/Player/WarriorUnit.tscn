@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcm307emb7bca"]
+
+[ext_resource type="PackedScene" uid="uid://bcoyk2o1rxrsl" path="res://Units/PlayerUnit.tscn" id="1_tfuf5"]
+[ext_resource type="Script" uid="uid://bvl6y4obgtqr" path="res://Units/Player/WarriorUnit.gd" id="2_whe4e"]
+
+[node name="WarriorUnit" instance=ExtResource("1_tfuf5")]
+script = ExtResource("2_whe4e")
+health = 150
+max_health = 150
+damage = 25
+move_speed = 50.0
+attack_rate = 1.0

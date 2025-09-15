@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8dgr6w3wujaf"]
+
+[ext_resource type="PackedScene" uid="uid://bcoyk2o1rxrsl" path="res://Units/PlayerUnit.tscn" id="1_15h4y"]
+[ext_resource type="Script" uid="uid://86obh3ou4fmf" path="res://Units/Player/MageUnit.gd" id="2_v6dog"]
+
+[node name="MageUnit" instance=ExtResource("1_15h4y")]
+script = ExtResource("2_v6dog")
+health = 30
+max_health = 30
+mana = 100
+max_mana = 100
+damage = 35
+move_speed = 20.0
+attack_range = 80.0
+attack_rate = 1.5
+target_check_rate = 3.5

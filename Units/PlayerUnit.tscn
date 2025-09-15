@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcoyk2o1rxrsl"]
+
+[ext_resource type="PackedScene" uid="uid://ccx4ynw0r6lbo" path="res://Units/Unit.tscn" id="1_3fscb"]
+[ext_resource type="Texture2D" uid="uid://cav0t7ue37eyt" path="res://Sprites/tile_0060.png" id="2_d574b"]
+[ext_resource type="Script" uid="uid://7eul3ghhdmu6" path="res://Units/PlayerUnit.gd" id="2_r4807"]
+
+[node name="PlayerUnit" groups=["player_unit"] instance=ExtResource("1_3fscb")]
+collision_mask = 2
+input_pickable = true
+script = ExtResource("2_r4807")
+
+[node name="SlectionSprite" type="Sprite2D" parent="." index="0"]
+visible = false
+position = Vector2(0, 1)
+texture = ExtResource("2_d574b")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

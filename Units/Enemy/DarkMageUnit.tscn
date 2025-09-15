@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://5lv4vbcnx1l6"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_i7lem"]
+[ext_resource type="Script" uid="uid://rns8khex4rgf" path="res://Units/Enemy/DarkMageUnit.gd" id="2_i7lem"]
+
+[node name="DarkMageUnit" instance=ExtResource("1_i7lem")]
+script = ExtResource("2_i7lem")
+health = 35
+max_health = 35
+mana = 100
+max_mana = 100
+damage = 35
+move_speed = 20.0
+attack_range = 80.0
+attack_rate = 1.5

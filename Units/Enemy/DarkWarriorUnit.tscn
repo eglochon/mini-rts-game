@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi6edwnb5dd4w"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_nfyon"]
+[ext_resource type="Script" uid="uid://ctr53ulpgp57n" path="res://Units/Enemy/DarkWarriorUnit.gd" id="2_nfyon"]
+
+[node name="DarkWarriorUnit" instance=ExtResource("1_nfyon")]
+script = ExtResource("2_nfyon")
+health = 150
+max_health = 150
+damage = 25
+move_speed = 50.0
+attack_rate = 1.0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://roorb60en4yy"]
+
+[ext_resource type="Script" uid="uid://ck4u857yw8adn" path="res://MainLevel/ItemTextureManager.gd" id="1_y4vn6"]
+
+[node name="ItemTextureManager" type="Node"]
+script = ExtResource("1_y4vn6")

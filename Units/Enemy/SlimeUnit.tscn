@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://evmbp1nbeyff"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_j8d0t"]
+[ext_resource type="Script" uid="uid://dpfru6kb4prqx" path="res://Units/Enemy/SlimeUnit.gd" id="2_j8d0t"]
+
+[node name="SlimeUnit" instance=ExtResource("1_j8d0t")]
+script = ExtResource("2_j8d0t")
+health = 50
+max_health = 50
+move_speed = 20.0
+attack_rate = 0.8

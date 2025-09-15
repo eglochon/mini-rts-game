@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy4tei3iufie"]
+
+[ext_resource type="PackedScene" uid="uid://bcoyk2o1rxrsl" path="res://Units/PlayerUnit.tscn" id="1_kd0h5"]
+[ext_resource type="Script" uid="uid://5xk5erh66j5a" path="res://Units/Player/RangerUnit.gd" id="2_kd0h5"]
+
+[node name="RangerUnit" instance=ExtResource("1_kd0h5")]
+script = ExtResource("2_kd0h5")
+health = 30
+max_health = 30
+damage = 25
+move_speed = 20.0
+attack_rate = 1.0
+target_check_rate = 3.5

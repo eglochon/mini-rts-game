@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://kwjkrv25kmfp"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_cq88s"]
+[ext_resource type="Script" uid="uid://paocb50uyqw8" path="res://Units/Enemy/SpiderUnit.gd" id="2_cq88s"]
+
+[node name="SpiderUnit" instance=ExtResource("1_cq88s")]
+script = ExtResource("2_cq88s")
+health = 45
+max_health = 45
+damage = 8
+move_speed = 25.0

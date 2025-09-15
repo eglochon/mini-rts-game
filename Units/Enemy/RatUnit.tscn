@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://myge5dbwgnjf"]
+
+[ext_resource type="PackedScene" uid="uid://chbl2y5pd0kue" path="res://Units/EnemyUnit.tscn" id="1_ropsh"]
+[ext_resource type="Script" uid="uid://bp0ypwmjobkcn" path="res://Units/Enemy/RatUnit.gd" id="2_ropsh"]
+
+[node name="RatUnit" instance=ExtResource("1_ropsh")]
+script = ExtResource("2_ropsh")
+health = 50
+max_health = 50
+damage = 5
+move_speed = 25.0
